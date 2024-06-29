@@ -1,22 +1,22 @@
 import { PrismaClient } from '@prisma/client';
 import path from 'path';
 
+declare const globalThis: { prismaGlobal: PrismaClient } & typeof global;
+
+const filePath = path.join(process.cwd(), 'prisma/demo.db');
+
 const PrismaClientConfig = {
   datasources: {
-    db: {
-      url: 'file:' + path.join(process.cwd(), 'prisma/demo.db'),
-    },
+    db: { url: `file:${filePath}` },
   },
 };
 
-const prismaClientSingleton = () => new PrismaClient(PrismaClientConfig);
+if (process.env.NODE_ENV !== 'production') {
+  if (!globalThis.prismaGlobal) {
+    globalThis.prismaGlobal = new PrismaClient(PrismaClientConfig);
+  }
+}
 
-declare const globalThis: {
-  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
-} & typeof global;
-
-const prisma = globalThis.prismaGlobal ?? prismaClientSingleton();
+const prisma = globalThis.prismaGlobal ?? new PrismaClient(PrismaClientConfig);
 
 export default prisma;
-
-if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = prisma;
