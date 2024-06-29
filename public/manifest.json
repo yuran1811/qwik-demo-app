@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json.schemastore.org/web-manifest-combined.json",
+  "name": "syt",
+  "short_name": "syt",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#fff",
+  "description": "Where to exchange your free-phone time for money."
+}

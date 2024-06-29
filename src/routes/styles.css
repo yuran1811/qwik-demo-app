@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *::-webkit-scrollbar {
+    @apply h-0 w-0;
+  }
+
+  html,
+  body {
+    @apply m-0 p-0 leading-4;
+  }
+
+  main {
+    @apply min-h-[calc(100vh-200px)] bg-gray-800 text-gray-100 dark:bg-gray-100 dark:text-gray-800;
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+  .flexcenter {
+    @apply flex items-center justify-center;
+  }
+
+  .flexcentercol {
+    @apply flexcenter flex-col;
+  }
+}
