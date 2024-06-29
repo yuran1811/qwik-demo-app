@@ -15,6 +15,7 @@ errorOnDuplicatesPkgDeps(devDependencies, dependencies);
 
 export default defineConfig(({ command, mode }): UserConfig => {
   return {
+    ssr: { external: ['path'] },
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
     optimizeDeps: {
       // Put problematic deps that break bundling here, mostly those with binaries.
