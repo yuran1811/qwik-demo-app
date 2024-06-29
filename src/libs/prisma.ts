@@ -1,6 +1,15 @@
 import { PrismaClient } from '@prisma/client';
+import path from 'path';
 
-const prismaClientSingleton = () => new PrismaClient();
+const PrismaClientConfig = {
+  datasources: {
+    db: {
+      url: 'file:' + path.join(process.cwd(), 'prisma/demo.db'),
+    },
+  },
+};
+
+const prismaClientSingleton = () => new PrismaClient(PrismaClientConfig);
 
 declare const globalThis: {
   prismaGlobal: ReturnType<typeof prismaClientSingleton>;
