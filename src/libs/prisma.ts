@@ -3,12 +3,14 @@ import { withAccelerate } from '@prisma/extension-accelerate';
 
 const makePrisma = () => new PrismaClient().$extends(withAccelerate());
 
-const globalForPrisma = global as unknown as {
-  prisma: ReturnType<typeof makePrisma>;
-};
+declare const globalThis: { prismaGlobal: ReturnType<typeof makePrisma> } & typeof global;
 
-export const prisma = globalForPrisma.prisma ?? makePrisma();
+if (process.env.NODE_ENV !== 'production') {
+  if (!globalThis.prismaGlobal) {
+    globalThis.prismaGlobal = makePrisma();
+  }
+}
 
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = makePrisma();
+const prisma = globalThis.prismaGlobal ?? makePrisma();
 
 export default prisma;
