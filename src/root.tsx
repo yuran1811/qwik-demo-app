@@ -12,10 +12,10 @@ export default component$(() => {
         <meta charset="utf-8" />
         <link rel="manifest" href="/manifest.json" />
         <RouterHead />
-        <ServiceWorkerRegister nonce={nonce} />
       </head>
       <body lang="en">
         <RouterOutlet />
+        <ServiceWorkerRegister nonce={nonce} />
       </body>
     </QwikCityProvider>
   );

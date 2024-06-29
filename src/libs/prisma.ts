@@ -1,7 +1,12 @@
 import { PrismaClient } from '@prisma/client/edge';
 import { withAccelerate } from '@prisma/extension-accelerate';
 
-const makePrisma = () => new PrismaClient().$extends(withAccelerate());
+const makePrisma = () =>
+  new PrismaClient({
+    datasources: {
+      db: { url: import.meta.env.VITE_DATABASE_URL },
+    },
+  }).$extends(withAccelerate());
 
 declare const globalThis: { prismaGlobal: ReturnType<typeof makePrisma> } & typeof global;
 

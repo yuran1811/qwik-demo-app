@@ -1,17 +1,17 @@
 import {
+  Slot,
   component$,
   createContextId,
-  type Signal,
-  Slot,
   useContextProvider,
   useSignal,
   useStyles$,
+  type Signal,
 } from '@builder.io/qwik';
 import type { RequestHandler } from '@builder.io/qwik-city';
 import type { User } from '@prisma/client';
 
-import styles from './styles.css?inline';
 import { useAuthSession } from './plugin@auth';
+import styles from './styles.css?inline';
 
 import Footer from '~/components/shared/footer';
 import Header from '~/components/shared/header';

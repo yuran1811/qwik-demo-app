@@ -5,7 +5,7 @@ import { manifest } from '@qwik-client-manifest';
 import render from './entry.ssr';
 
 declare global {
-  type QwikCityPlatform = PlatformVercel
+  type QwikCityPlatform = PlatformVercel;
 }
 
 export default createQwikCity({ render, qwikCityPlan, manifest });
