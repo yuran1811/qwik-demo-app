@@ -22,6 +22,6 @@ export const useUserProfile = routeLoader$(async ({ params }) => {
 });
 
 export const useRedeemItem = routeLoader$(async () => {
-  const redeemItems = await prisma.redeemItem.findMany();
+  const redeemItems = await prisma.redeemItem.findMany({ cacheStrategy: { ttl: 60 * 5 } });
   return redeemItems;
 });
