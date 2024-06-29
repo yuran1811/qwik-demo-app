@@ -9,7 +9,7 @@
   "engines-annotation": "Mostly required by sharp which needs a Node-API v9 compatible runtime",
   "trustedDependencies-annotation": "Needed for bun to allow running install scripts",
   "scripts": {
-    "build": "qwik build",
+    "build": "yarn add sharp --ignore-engines && qwik build",
     "build.client": "vite build",
     "build.preview": "vite build --ssr src/entry.preview.tsx",
     "build.server": "vite build -c adapters/vercel-edge/vite.config.ts",
