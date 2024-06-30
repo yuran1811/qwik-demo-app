@@ -13,13 +13,14 @@
 
 ## Live Demo
 
-- Official site: [https://qwik-app-demo-iota.vercel.app/](https://qwik-app-demo-iota.vercel.app/)
+- [Official site](https://qwik-demo-app-iota.vercel.app/)
 
 ## Features
 
 - [x] Authentication with Auth.js
-- [x] Prisma Integration
-- [x] Redeem gifts
+- [x] Prisma (with acceleration) + Supabase
+- [x] Redeem gifts + redeem history
+- [x] User profile and accumulate points
 
 ## References
 
