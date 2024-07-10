@@ -12,21 +12,27 @@ export const NavLinkMobile = component$(
     const extractedPath = props.pathname || '';
 
     return (
-      <ul class={classnames('flex flex-col items-center justify-start gap-4 text-xl sm:hidden')}>
-        {PUBLIC_ROUTES.map((_) => (
-          <li class="flex" key={`${_.path}--${_.name}`} onClick$={props.handleChange$}>
-            <Link
-              href={_.path + (_.authRequired && userContext.value ? `/user/${userContext.value.id}` : '')}
-              class={classnames(
-                'dark:border- -mb-1 flex h-12 items-center px-4 font-medium',
-                checkPathInclude(extractedPath, _.path) && 'text-violet-400 dark:text-violet-600',
-              )}
-            >
-              {_.name}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <div class="fixed left-0 right-0 top-[88px] z-50 w-screen bg-gray-800 dark:bg-gray-100">
+        <ul
+          class={classnames(
+            'relative flex cursor-pointer flex-col items-center justify-center gap-4 p-4 text-xl transition-all sm:hidden',
+          )}
+        >
+          {PUBLIC_ROUTES.map((_) => (
+            <li class="flex" key={`${_.path}--${_.name}`} onClick$={props.handleChange$}>
+              <Link
+                href={_.path + (_.authRequired && userContext.value ? `/user/${userContext.value.id}` : '')}
+                class={classnames(
+                  'dark:border- -mb-1 flex h-12 items-center px-4 font-medium',
+                  checkPathInclude(extractedPath, _.path) && 'text-violet-400 dark:text-violet-600',
+                )}
+              >
+                {_.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
     );
   },
 );

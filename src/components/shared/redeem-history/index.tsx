@@ -28,9 +28,9 @@ export default component$((props: { redeemItems: RedeemItem[]; redeemHistories: 
   const redeemItemMap = new Map(props.redeemItems.map((redeemItem) => [redeemItem.id, redeemItem]));
 
   return (
-    <div class="flex w-full max-w-sm flex-col justify-center rounded-xl bg-gray-900 p-6 text-gray-100 shadow-md dark:bg-gray-50 dark:text-gray-800 sm:px-12">
+    <div class="flex max-h-[480px] w-full max-w-sm flex-col justify-center rounded-xl bg-gray-900 p-6 text-gray-100 shadow-md dark:bg-gray-50 dark:text-gray-800 sm:px-12">
       <h2 class="mb-3 text-center text-xl font-semibold sm:text-2xl"> Redeem History</h2>
-      <div class="flex h-full max-h-96 flex-col items-center justify-start gap-4 overflow-y-auto overflow-x-hidden">
+      <div class="flex h-full flex-col items-center justify-start gap-4 overflow-y-auto overflow-x-hidden">
         {!props.redeemHistories.length && <div class="text-gray-500">No redeem history.</div>}
         {props.redeemHistories.reverse().map((redeemHistory) => (
           <RedeemHistoryItem

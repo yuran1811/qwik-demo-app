@@ -10,13 +10,13 @@ import { useAuthSignout } from '~/routes/plugin@auth';
 import { classnames } from '~/utils';
 
 const beforeStyle = (active: boolean) =>
-  `before:transition-all before:content-[""] before:absolute before:bg-white before:w-full before:h-[0.5rem] before:top-[1.2rem] before:rounded-md before:left-0 ${
-    active ? 'before:rotate-[135deg] before:top-[2rem]' : 'before:!bg-white'
+  `before:transition-all before:content-[""] before:absolute before:bg-white dark:before:bg-slate-400 before:w-full before:h-[0.5rem] before:top-[1.2rem] before:rounded-md before:left-0 ${
+    active ? 'before:rotate-[135deg] before:top-[2rem]' : ''
   }`;
 
 const afterStyle = (active: boolean) =>
-  `after:transition-all after:content-[""] after:absolute after:bg-white after:w-full after:h-[0.5rem] after:bottom-[1.2rem] after:left-0 after:rounded-md ${
-    active ? 'after:rotate-[-135deg] after:top-[2rem]' : 'after:!bg-white'
+  `after:transition-all after:content-[""] after:absolute after:bg-white dark:after:bg-slate-400 after:h-[0.5rem] after:bottom-[1.2rem] after:left-0 after:rounded-md after:w-full ${
+    active ? 'after:rotate-[-135deg] after:top-[2rem]' : ''
   }`;
 
 export default component$((props: { pathname?: string; session?: Session }) => {
@@ -71,11 +71,7 @@ export default component$((props: { pathname?: string; session?: Session }) => {
         />
       </div>
 
-      {showMenu.value && (
-        <div class="fixed left-0 right-0 top-[88px] z-50 w-screen bg-gray-800 pb-12">
-          <NavLinkMobile pathname={props.pathname} handleChange$={handleChange$} />
-        </div>
-      )}
+      {showMenu.value && <NavLinkMobile pathname={props.pathname} handleChange$={handleChange$} />}
     </header>
   );
 });

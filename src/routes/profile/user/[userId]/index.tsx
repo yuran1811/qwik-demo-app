@@ -28,7 +28,7 @@ export default component$(() => {
       {!userProfile.value || !userContext.value || userProfile.value?.username !== userContext.value?.username ? (
         <LoginRequired />
       ) : (
-        <div class="container mx-auto flex flex-col items-center justify-center gap-4 p-4 pt-12 md:flex-row">
+        <div class="container mx-auto flex flex-col items-center justify-center gap-4 p-4 pt-12 md:flex-row md:items-start">
           <Profile name={userProfile.value.username}>
             <div class="space-y-4 divide-y divide-gray-700 text-center dark:divide-gray-300">
               <div class="my-2 space-y-1">

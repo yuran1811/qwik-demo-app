@@ -18,6 +18,21 @@
 }
 
 @layer components {
+  .gradient-bg {
+    &-1 {
+      background:
+        radial-gradient(circle at 50% 0, rgb(255 0 0 / 50%), rgb(255 0 0 / 0%) 70.71%),
+        radial-gradient(circle at 6.7% 75%, rgb(0 0 255 / 50%), rgb(0 0 255 / 0%) 70.71%),
+        radial-gradient(circle at 93.3% 75%, rgb(0 255 0 / 50%), rgb(0 255 0 / 0%) 70.71%) beige;
+    }
+
+    &-2 {
+      background:
+        radial-gradient(circle at center, #1e153522, #1e153522),
+        radial-gradient(circle at top right, #1e153544, #0025ce44, #00eaff44, #badaff44),
+        radial-gradient(circle at right bottom, #badaff, #4d3589 80%) beige;
+    }
+  }
 }
 
 @layer utilities {
