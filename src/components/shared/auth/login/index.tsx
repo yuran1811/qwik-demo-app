@@ -11,14 +11,14 @@ export default component$(() => {
       <div class="space-y-12">
         <div class="space-y-4">
           <div>
-            <label for="username" class="mb-2 block text-sm">
-              Username
+            <label for="email" class="mb-2 block text-sm">
+              Email
             </label>
             <input
-              type="text"
-              name="options.username"
-              id="username"
-              placeholder="Type your username"
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Type your email"
               class="w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-gray-100 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
             />
           </div>
@@ -30,7 +30,7 @@ export default component$(() => {
             </div>
             <input
               type="password"
-              name="options.password"
+              name="password"
               id="password"
               placeholder="Type your password"
               class="w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-gray-100 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"

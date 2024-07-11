@@ -8,10 +8,11 @@ import { getHeadInfo } from '~/utils';
 export const onRequest: RequestHandler = async ({ cookie, redirect }) => {
   const checkAuthorization = (cookie: Cookie) => {
     const cookies = cookie.getAll();
-    return Object.keys(cookies).includes('authjs.session-token');
+    return Object.keys(cookies).includes('authjs.session-token') || Object.keys(cookies).includes('session');
   };
 
   const isAuthorized = checkAuthorization(cookie);
+  console.log('isAuthorized: ', isAuthorized);
 
   if (!isAuthorized) {
     throw redirect(302, '/auth/login');

@@ -10,14 +10,13 @@ import {
 import type { RequestHandler } from '@builder.io/qwik-city';
 import type { User } from '@prisma/client';
 
-import { useAuthSession } from './plugin@auth';
 import styles from './styles.css?inline';
 
 import Footer from '~/components/shared/footer';
 import Header from '~/components/shared/header';
 
-import { usePathname, useServerTime } from '~/shared/loaders';
-export { usePathname, useServerTime } from '~/shared/loaders';
+import { usePathname, useServerTime, useSession } from '~/shared/loaders';
+export { usePathname, useServerTime, useSession } from '~/shared/loaders';
 
 export const UserContext = createContextId<Signal<User>>('user-context');
 
@@ -50,7 +49,7 @@ export default component$(() => {
   const pathname = usePathname().value;
   const serverTime = useServerTime().value;
 
-  const session = useAuthSession();
+  const session = useSession();
   const sessionSignal = useSignal(session?.value?.user as User | undefined);
   useContextProvider(UserContext, sessionSignal);
 

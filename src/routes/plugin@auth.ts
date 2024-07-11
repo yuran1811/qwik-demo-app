@@ -1,13 +1,15 @@
 import type { Provider } from '@auth/core/providers';
-import Credentials from '@auth/core/providers/credentials';
 import type { Awaitable, User } from '@auth/core/types';
-import { serverAuth$ } from '@builder.io/qwik-auth';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { QwikAuth$ } from '@auth/qwik';
+import Credentials from '@auth/qwik/providers/credentials';
 import type { User as PrismaUser } from '@prisma/client';
 
 import prisma from '~/libs/prisma';
 
-export const { onRequest, useAuthSession, useAuthSignin, useAuthSignout } = serverAuth$(({ env }) => ({
+export const { onRequest, useSession, useSignIn, useSignOut } = QwikAuth$(({ env }) => ({
   secret: env.get('AUTH_SECRET') || 'secret',
+  adapter: PrismaAdapter(prisma),
   trustHost: true,
   callbacks: {
     async jwt({ token, user }) {
@@ -25,22 +27,32 @@ export const { onRequest, useAuthSession, useAuthSignin, useAuthSignout } = serv
         username: { label: 'Username', type: 'text' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials) {
-        if (!credentials) return null;
+      authorize: async (credentials) => {
+        if (!credentials || !(credentials?.username as string).length || !(credentials?.password as string).length)
+          return null;
+        console.log('credentials: ', credentials);
 
-        const user = await prisma.user.findUnique({
-          where: {
-            username: ((credentials.username as string) || '').trim(),
-            password: ((credentials.password as string) || '').trim(),
-          },
-        });
-        if (!user) return null;
+        try {
+          await prisma.redeemItem.findMany();
+          return null;
 
-        return {
-          id: user?.id,
-          username: user?.username,
-          points: user?.points,
-        } as Awaitable<(User & PrismaUser) | null>;
+          const user = await prisma.user.findUnique({
+            where: {
+              username: ((credentials.username as string) || '').trim(),
+              password: ((credentials.password as string) || '').trim(),
+            },
+          });
+          if (!user) return null;
+
+          return {
+            id: user?.id,
+            username: user?.username,
+            points: user?.points,
+          } as Awaitable<(User & PrismaUser) | null>;
+        } catch (error) {
+          console.error(`[err][plugin@auth]: ${error}\n######`);
+          return null;
+        }
       },
     }),
   ] as Provider[],

@@ -1,6 +1,7 @@
 import { routeAction$, z, zod$ } from '@builder.io/qwik-city';
 
 import prisma from '~/libs/prisma';
+import { supabase } from '~/libs/supabase';
 
 export const useUpdatePoints = routeAction$(
   async (data) => {
@@ -61,3 +62,6 @@ export const useRedeem = routeAction$(
     redeemId: z.string().trim().min(1),
   }),
 );
+export const useSignOut = routeAction$(async () => {
+  await supabase.auth.signOut();
+});

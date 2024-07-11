@@ -1,11 +1,10 @@
-import type { Session } from '@auth/core/types';
 import { $, component$, useSignal } from '@builder.io/qwik';
 import { Form, Link } from '@builder.io/qwik-city';
 
 import ThemeToggle from '~/components/shared/theme-toggle';
 import NavLink, { NavLinkMobile } from '../nav-link';
 
-import { useAuthSignout } from '~/routes/plugin@auth';
+import { useSignOut } from '~/shared/actions';
 
 import { classnames } from '~/utils';
 
@@ -19,8 +18,8 @@ const afterStyle = (active: boolean) =>
     active ? 'after:rotate-[-135deg] after:top-[2rem]' : ''
   }`;
 
-export default component$((props: { pathname?: string; session?: Session }) => {
-  const signoutAction = useAuthSignout();
+export default component$((props: { pathname?: string; session?: any }) => {
+  const signoutAction = useSignOut();
   const showMenu = useSignal(false);
 
   const handleChange$ = $(() => (showMenu.value = !showMenu.value));

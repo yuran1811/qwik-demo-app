@@ -17,9 +17,13 @@ export default defineConfig(({ command, mode }): UserConfig => {
   return {
     plugins: [qwikCity(), qwikVite(), tsconfigPaths()],
     optimizeDeps: {
-      // Put problematic deps that break bundling here, mostly those with binaries.
-      // For example ['better-sqlite3'] if you use that in server functions.
-      include: ['@auth/core'],
+      include: [
+        '@auth/core',
+        '@auth/qwik',
+        '@auth/prisma-adapter',
+        '@prisma/client/edge',
+        '@prisma/extension-accelerate',
+      ],
       exclude: [],
     },
     server: {

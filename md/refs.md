@@ -1,0 +1,3 @@
+- [Supabase](https://supabase.com/dashboard/project/stbyrqvpzlfwbxsvremr)
+  - If error occurs, just restart the supabase project
+- [Prisma Console](https://console.prisma.io/clxzzkrx204mivfv2ljgvioi8/clxzzq9iu04mrvfv2ivvwzthn/environments)

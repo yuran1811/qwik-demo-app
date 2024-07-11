@@ -12,7 +12,7 @@ export const useUserProfile = routeLoader$(async ({ params }) => {
   const user = await prisma.user.findUnique({ where: { id: +userId } });
   if (!user) return null;
 
-  const redeemHistory = await prisma.redeemHistory.findMany({ where: { userId: +userId } });
+  const redeemHistory = await prisma.redeemHistory.findMany({ where: { userId: +userId }, cacheStrategy: { ttl: 60 } });
 
   return {
     username: user.username,
@@ -22,6 +22,16 @@ export const useUserProfile = routeLoader$(async ({ params }) => {
 });
 
 export const useRedeemItem = routeLoader$(async () => {
-  const redeemItems = await prisma.redeemItem.findMany({ cacheStrategy: { ttl: 60 * 5 } });
+  const redeemItems = await prisma.redeemItem.findMany({ cacheStrategy: { ttl: 60 * 12 } });
   return redeemItems;
+});
+
+export const useSession = routeLoader$(({ cookie }) => {
+  const isAuth = cookie.has('session');
+  if (!isAuth) return null;
+
+  const session = cookie.get('session')?.json();
+  const user = cookie.get('user')?.json();
+
+  return { session, user };
 });

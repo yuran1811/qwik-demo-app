@@ -1,7 +1,6 @@
 import { component$ } from '@builder.io/qwik';
 
 import { QwikLogo } from '~/components/icons/qwik';
-import Login from '~/components/shared/auth/login';
 import Signup from '~/components/shared/auth/signup';
 import Banner from '~/components/shared/banner';
 import Card from '~/components/shared/card';
@@ -23,7 +22,7 @@ export default component$(() => {
         <ConfettiButton />
         <div class="flex w-full flex-row flex-wrap items-center justify-center gap-3">
           <Signup />
-          <Login />
+          {/* <Login /> */}
         </div>
         <Banner />
         <Card />

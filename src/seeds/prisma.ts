@@ -1,25 +1,17 @@
-import { PrismaClient, type RedeemItem, type User } from '@prisma/client';
+import { type RedeemItem, type User } from '@prisma/client';
+
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 const usersToCreate: Omit<User, 'id'>[] = [
   {
-    username: 'yuran',
+    username: 'test123',
     password: '1',
     points: 0,
   },
   {
-    username: 'test',
-    password: '1',
-    points: 0,
-  },
-  {
-    username: 'minh',
-    password: '1',
-    points: 0,
-  },
-  {
-    username: 'dang',
+    username: 'test456',
     password: '1',
     points: 0,
   },
@@ -27,11 +19,11 @@ const usersToCreate: Omit<User, 'id'>[] = [
 
 const usersToUpdate: Pick<User, 'username' | 'points'>[] = [
   {
-    username: 'yuran',
+    username: 'test123',
     points: 150,
   },
   {
-    username: 'test',
+    username: 'test456',
     points: 100,
   },
 ];

@@ -11,6 +11,18 @@ export default component$(() => {
       <div class="space-y-12">
         <div class="space-y-4">
           <div>
+            <label for="email" class="mb-2 block text-sm">
+              Email
+            </label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="Type your email"
+              class="w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-gray-100 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
+            />
+          </div>
+          <div>
             <label for="username" class="mb-2 block text-sm">
               Username
             </label>
