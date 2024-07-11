@@ -24,21 +24,20 @@ export const UserContext = createContextId<Signal<User>>('user-context');
 export const onGet: RequestHandler = async ({ url, cacheControl }) => {
   // https://qwik.dev/docs/caching/
   cacheControl({
-    maxAge: 0,
-    sMaxAge: 0,
-    staleWhileRevalidate: 0,
+    maxAge: 5,
+    staleWhileRevalidate: 60,
   });
 
   if (url.pathname === '/') {
     cacheControl({
       public: true,
       maxAge: 5,
-      staleWhileRevalidate: 60 * 4,
+      staleWhileRevalidate: 60 * 3,
     });
     cacheControl(
       {
         maxAge: 5,
-        staleWhileRevalidate: 60 * 4,
+        staleWhileRevalidate: 60 * 3,
       },
       'CDN-Cache-Control',
     );

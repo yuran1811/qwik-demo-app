@@ -18,6 +18,7 @@ export default component$(() => {
               type="text"
               name="options.username"
               id="username"
+              minLength={1}
               placeholder="Type your username"
               class="w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-gray-100 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
             />
@@ -32,6 +33,7 @@ export default component$(() => {
               type="password"
               name="options.password"
               id="password"
+              minLength={1}
               placeholder="Type your password"
               class="w-full rounded-md border border-gray-700 bg-gray-900 px-3 py-2 text-gray-100 dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800"
             />

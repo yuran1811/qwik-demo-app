@@ -33,6 +33,14 @@
         radial-gradient(circle at right bottom, #badaff, #4d3589 80%) beige;
     }
   }
+
+  .form-err {
+    @apply text-red-400 dark:text-red-600;
+  }
+
+  input + .form-err {
+    @apply mt-2;
+  }
 }
 
 @layer utilities {
